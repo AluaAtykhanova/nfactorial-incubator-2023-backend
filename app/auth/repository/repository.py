@@ -19,6 +19,19 @@ class AuthRepository:
 
         self.database["users"].insert_one(payload)
 
+    def update_user(self, user_id: str, user: dict):
+        filter_query = {"_id": ObjectId(user_id)}
+        update_query = {"$set": user}
+
+        self.database["users"].update_one(filter_query, update_query)
+
+        result = self.database["users"].find_one(
+            {
+                "_id": ObjectId(user_id),
+            }
+        )
+        return result
+
     def get_user_by_id(self, user_id: str) -> dict | None:
         user = self.database["users"].find_one(
             {

@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: fastapi
+    runtime: docker
+    plan: free
+    repo: mongodb+srv://alua4g:D6L5qDaU7wclHXUe@cluster0.ixzordp.mongodb.net/?retryWrites=true&w=majority
+    region: frankfurt
+    branch: maingit add
+    envVars:
+      - key: MONGO_URL
+        sync: false
+    buildFilter:
+      paths:
+        - app/**

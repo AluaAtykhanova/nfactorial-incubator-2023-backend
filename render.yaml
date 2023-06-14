@@ -2,6 +2,7 @@ services:
   - type: web
     name: fastapi
     runtime: docker
+    repo: https://github.com/AluaAtykhanova/nfactorial-incubator-2023-backend.git
     plan: free
     region: frankfurt
     branch: maingit add

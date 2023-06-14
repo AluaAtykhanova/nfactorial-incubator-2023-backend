@@ -27,3 +27,24 @@ class ShanyraksRepository:
         post = self.database["posts"].find_one({"_id": post_id})
 
         return str(post_id)
+
+    def get_post_by_id(self, post_id: str):
+        post = self.database["posts"].find_one({"_id": ObjectId(post_id)})
+
+        return post
+
+    def update_post_by_id(self, post_id: str, post: dict):
+        filter_query = {"_id": ObjectId(post_id)}
+        update_query = {"$set": post}
+
+        self.database["posts"].update_one(filter_query, update_query)
+
+        result = self.database["posts"].find_one(
+            {
+                "_id": ObjectId(post_id),
+            }
+        )
+        return result
+
+    def delete_post(self, post_id: str):
+        self.database["posts"].delete_one({"_id": ObjectId(post_id)})

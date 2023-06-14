@@ -17,7 +17,7 @@ class CreatePostRequest(AppModel):
     description: str
 
 
-@router.post("/")
+@router.post("/", status_code=status.HTTP_200_OK)
 def create_post(
     input: CreatePostRequest,
     jwt_data: JWTData = Depends(parse_jwt_user_data),

@@ -14,7 +14,14 @@ class Config(BaseSettings):
     MONGOUSER: str = "root"
     MONGOPASSWORD: str = "password"
     MONGODATABASE: str = "fastapi"
+    MONGO_URL: str = ""
 
+
+mongo_url = (
+    f"mongodb://{env.MONGOUSER}:{env.MONGOPASSWORD}@{env.MONGOHOST}:{env.MONGOPORT}/"
+)
+if env.MONGO_URL:
+    mongo_url = env.MONGO_URL
 
 # environmental variables
 env = Config()

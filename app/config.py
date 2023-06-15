@@ -18,7 +18,7 @@ class Config(BaseSettings):
 
 
 mongo_url = (
-    f"mongodb://{env.MONGOUSER}:{env.MONGOPASSWORD}@{env.MONGOHOST}:{env.MONGOPORT}/"
+    f"mongodb+srv://alua4g:D6L5qDaU7wclHXUe@cluster0.ixzordp.mongodb.net/?retryWrites=true&w=majority/"
 )
 if env.MONGO_URL:
     mongo_url = env.MONGO_URL

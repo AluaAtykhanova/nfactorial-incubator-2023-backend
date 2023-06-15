@@ -17,10 +17,6 @@ class Config(BaseSettings):
     MONGO_URL: str = ""
 
 
-mongo_url = (
-    f"mongodb+srv://alua4g:D6L5qDaU7wclHXUe@cluster0.ixzordp.mongodb.net/?retryWrites=true&w=majority/"
-)
-
 # environmental variables
 env = Config()
 
@@ -29,10 +25,14 @@ fastapi_config: dict[str, Any] = {
     "title": "API",
 }
 
-# MongoDB connection
-client = MongoClient(
-    f"mongodb://{env.MONGOUSER}:{env.MONGOPASSWORD}@{env.MONGOHOST}:{env.MONGOPORT}/"
+mongo_url = (
+    f"mongodb+srv://alua4g:D6L5qDaU7wclHXUe@cluster0.ixzordp.mongodb.net/?retryWrites=true&w=majority/"
 )
+if env.MONGO_URL:
+    mongo_url = env.MONGO_URL
+
+# MongoDB connection
+client = MongoClient(mongo_url)
 
 # MongoDB database
 database = client[env.MONGODATABASE]

@@ -14,7 +14,7 @@ class Config(BaseSettings):
     MONGOUSER: str = "root"
     MONGOPASSWORD: str = "password"
     MONGODATABASE: str = "fastapi"
-    MONGO_URL: str = ""
+    MONGO_URL: str = "mongodb+srv://alua4g:D6L5qDaU7wclHXUe@cluster0.ixzordp.mongodb.net/?retryWrites=true&w=majority/"
 
 
 mongo_url = (

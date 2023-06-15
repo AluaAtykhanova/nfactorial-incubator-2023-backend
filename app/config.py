@@ -14,6 +14,7 @@ class Config(BaseSettings):
     MONGOUSER: str = "root"
     MONGOPASSWORD: str = "password"
     MONGODATABASE: str = "fastapi"
+    MONGO_URL: str = ""
 
 
 # environmental variables
@@ -23,6 +24,12 @@ env = Config()
 fastapi_config: dict[str, Any] = {
     "title": "API",
 }
+
+mongo_url = (
+    f"mongodb://{env.MONGOUSER}:{env.MONGOPASSWORD}@{env.MONGOHOST}:{env.MONGOPORT}/"
+)
+if env.MONGO_URL:
+    mongo_url = env.MONGO_URL
 
 # MongoDB connection
 client = MongoClient(
